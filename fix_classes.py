@@ -10,7 +10,7 @@ label_txts =(glob.glob("Test_Labels_Needing_Fixing/*.txt"))
 fixed_label_txt_path = "Fixed_Label_TXTs" #Output directory
 
     # Function to convert  
-def listToString(s): 
+def ListToString(s): 
     
     # initialize an empty string
     str1 = "" 
@@ -22,12 +22,12 @@ def listToString(s):
     # return string  
     return str1 
 
-def writetofile(txt,data):
+def WriteToFile(txt,data):
     f = open(txt, "w")
     f.write(data)
     f.close()
 
-def appendtofile(txt,data):
+def AppendToFile(txt,data):
     f = open(txt, "a")
     f.write(data)
     f.close()
@@ -58,13 +58,13 @@ for txt in label_txts:
         elif line_list[0] == '1':
             line_list[0] = '3'
 
-        data = listToString(line_list)
+        data = ListToString(line_list)
         #print(data)
 
         if count == 0:
-            writetofile(fixed_label_txts,data)
+            WriteToFile(fixed_label_txts,data)
         if count > 0:
-            appendtofile(fixed_label_txts,data)
+            AppendToFile(fixed_label_txts,data)
 
         count += 1
 
