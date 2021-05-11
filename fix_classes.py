@@ -32,6 +32,9 @@ def AppendToFile(txt,data):
     f.write(data)
     f.close()
 
+def inspect(var): 
+    print(f"Name: {var.__repr__} | type: {type(var)} | value: {var}") 
+
 for txt in label_txts:
 
     #Separate file name from directory
@@ -46,7 +49,9 @@ for txt in label_txts:
     count = 0
 
     for line in f_read.readlines():
-        #print(line)
+
+        inspect(line)
+        
         f_contents = f_read.read()
 
         line_list = list(line)
@@ -59,7 +64,8 @@ for txt in label_txts:
             line_list[0] = '3'
 
         data = ListToString(line_list)
-        #print(data)
+        
+        inspect(data)
 
         if count == 0:
             WriteToFile(fixed_label_txts,data)
