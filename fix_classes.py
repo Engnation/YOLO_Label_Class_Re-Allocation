@@ -35,45 +35,48 @@ def appendtofile(txt,data):
 def inspect(var): 
     print(f"Name: {var.__repr__} | type: {type(var)} | value: {var}") 
 
-for txt in label_txts:
 
-    #Separate file name from directory
-    filename = txt.split("/")[1]
-   
-    #Specify output directory
-    fixed_label_txts = os.path.join(fixed_label_txt_path,filename)
+if __name__ == "__main__":
 
-    f_read = open(txt, "r")
+    for txt in label_txts:
 
-    count = 0
+        #Separate file name from directory
+        filename = txt.split("/")[1]
+    
+        #Specify output directory
+        fixed_label_txts = os.path.join(fixed_label_txt_path,filename)
 
-    for line in f_read.readlines():
+        f_read = open(txt, "r")
 
-        inspect(line)
-        
-        f_contents = f_read.read()
+        count = 0
 
-        line_list = list(line)
+        for line in f_read.readlines():
 
-        #Enter classes you want to replace here:
-        #ToDo (iterate this for n# of classes)
-        if line_list[0] == '0':
-            line_list[0] = '8'
-        elif line_list[0] == '1':
-            line_list[0] = '3'
+            inspect(line)
+            
+            f_contents = f_read.read()
 
-        data = listtostring(line_list)
-        
-        inspect(data)
+            line_list = list(line)
 
-        if count == 0:
-            writetofile(fixed_label_txts,data)
-        if count > 0:
-            appendtofile(fixed_label_txts,data)
+            #Enter classes you want to replace here:
+            #ToDo (iterate this for n# of classes)
+            if line_list[0] == '0':
+                line_list[0] = '8'
+            elif line_list[0] == '1':
+                line_list[0] = '3'
 
-        count += 1
+            data = listtostring(line_list)
+            
+            inspect(data)
 
-f_read.close()        
+            if count == 0:
+                writetofile(fixed_label_txts,data)
+            if count > 0:
+                appendtofile(fixed_label_txts,data)
 
-print("done!")
+            count += 1
+
+    f_read.close()        
+
+    print("done!")
 
