@@ -46,37 +46,37 @@ if __name__ == "__main__":
         #Specify output directory
         fixed_label_txts = os.path.join(fixed_label_txt_path,filename)
 
-        f_read = open(txt, "r")
+        with open(txt, "r") as f_read:
 
-        count = 0
+            count = 0
 
-        for line in f_read.readlines():
+            for line in f_read.readlines():
 
-            inspect(line)
-            
-            f_contents = f_read.read()
+                inspect(line)
+                
+                f_contents = f_read.read()
 
-            line_list = list(line)
+                line_list = list(line)
 
-            #Enter classes you want to replace here:
-            #ToDo (iterate this for n# of classes)
-            if line_list[0] == '0':
-                line_list[0] = '8'
-            elif line_list[0] == '1':
-                line_list[0] = '3'
+                #Enter classes you want to replace here:
+                #ToDo (iterate this for n# of classes)
+                if line_list[0] == '0':
+                    line_list[0] = '8'
+                elif line_list[0] == '1':
+                    line_list[0] = '3'
 
-            data = listtostring(line_list)
-            
-            inspect(data)
+                data = listtostring(line_list)
+                
+                inspect(data)
 
-            if count == 0:
-                writetofile(fixed_label_txts,data)
-            if count > 0:
-                appendtofile(fixed_label_txts,data)
+                if count == 0:
+                    writetofile(fixed_label_txts,data)
+                if count > 0:
+                    appendtofile(fixed_label_txts,data)
 
-            count += 1
+                count += 1
 
-    f_read.close()        
+        f_read.close()        
 
     print("done!")
 
